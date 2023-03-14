@@ -27,7 +27,6 @@ struct MapView: UIViewRepresentable {
         let mapView = MKMapView(frame: .zero)
         mapView.delegate = context.coordinator
         mapView.showsUserLocation = true
-        //self.addHeatmapOverlay(to: mapView, data: [:])
         return mapView
     }
     
@@ -40,9 +39,8 @@ struct MapView: UIViewRepresentable {
         guard let location = location else { return }
         let region = MKCoordinateRegion(center: location.coordinate, span: span)
         uiView.setRegion(region, animated: true)
-        //context.coordinator.mapViewDidChangeRegion(uiView)
-        // Heatmap
         
+        // Heatmap
         // Update heatmap
         print("Anno: \(annotations)")
         var data: [AnyHashable: Any?] = [:]
@@ -93,11 +91,9 @@ struct MapView: UIViewRepresentable {
       let overlay = MapTileOverlay(image: mapTile ?? UIImage())
       overlay.canReplaceMapContent = true
         uiView.addOverlay(overlay, level: .aboveRoads)
-      //tileRenderer = MKTileOverlayRenderer(tileOverlay: overlay)
     }
     
     private func addHeatmapOverlay(to mapView: MKMapView, data: [AnyHashable: Any]?) {
-        //let coordinates = annotations.map { $0.coordinate }
         heatMap.setData(data! as [AnyHashable : Any])
         mapView.addOverlay(heatMap)
     }

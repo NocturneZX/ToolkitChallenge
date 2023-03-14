@@ -18,7 +18,7 @@ class MapTileOverlay: MKTileOverlay {
     
   override func url(forTilePath path: MKTileOverlayPath) -> URL {
     let tileUrl =
-        "https://maps.aerisapi.com/\(NetworkData.clientID)_\(NetworkData.clientKey)/radar/\(path.z)/\(path.x)/\(path.y)/current.png"
+        "https://maps.aerisapi.com/\(Constants.clientID)_\(Constants.clientKey)/radar/\(path.z)/\(path.x)/\(path.y)/current.png"
     return URL(string: tileUrl)!
   }
 }

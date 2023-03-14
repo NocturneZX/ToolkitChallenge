@@ -32,7 +32,7 @@ struct ContentView: View {
                     Text("Radar").tag(MapTileType.radar)
                     Text("Alerts").tag(MapTileType.alerts)
                 }
-                .onChange(of: mapTileType, perform: { value in
+                .onChange(of: mapTileType, perform: { value in // The map tiles will change and fetch data again
                     let mapPoint = MKMapPoint(locationManager.location!.coordinate)
                     viewModel.fetchMapData(latitude: mapPoint.x, longitude: mapPoint.y, zoom: 5, type: mapTileType.rawValue)
                     viewModel.fetchStormReports(latitude: locationManager.location!.coordinate.latitude, longitude: locationManager.location!.coordinate.longitude)
@@ -41,13 +41,13 @@ struct ContentView: View {
                 .padding(.horizontal)
             }
             .onAppear {
-                locationManager.start()
+                locationManager.start() // Starts to check user location
             }
             .onReceive(locationManager.$location) { location in
                 guard let location = location else { return }
                 region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 8.0, longitudeDelta: 8.0))
-                let mapPoint = MKMapPoint(location.coordinate)
 
+                // Fetch the map times and storm reports once the location is defined
                 viewModel.fetchMapData(latitude: 41, longitude: 23, zoom: 8, type: mapTileType.rawValue)
                 viewModel.fetchStormReports(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             }

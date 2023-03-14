@@ -26,19 +26,7 @@ fileprivate func newJSONEncoder() -> JSONEncoder {
 }
 
 class NetworkData: NSObject, ObservableObject, CLLocationManagerDelegate {
-//   
-//   static let clientID: String = "r6lEBgJiVK9Nk5qwxx1dd"
-//   static let clientKey: String = "aQyHu2vZE6UgACDBHBM5PDW5Vwn5lxWwQzO91jEq"
-//   
-//   
-//   
-//   static let clientID: String = "DAbiMTarY8wNNoKMNfaz8"
-//   static let clientKey: String = "w0ss3eaeLRRkeVrd2H067P2DV3H7aG4kQLR1gUm7"
-   
-   
-   static let clientID: String = "4eVqWdIpoVOPbeY2i4TNj"
-   static let clientKey: String = "Amzkgeysxj6cBo4JM9F5buHmRhVuNIjVDoSPbikE"
-   
+
    @Published var annotations: [MKPointAnnotation] = []
 
    override init() {
@@ -48,7 +36,7 @@ class NetworkData: NSObject, ObservableObject, CLLocationManagerDelegate {
    static func fetchMapData(latitude: Double, longitude: Double, zoom: Double, type: String) -> AnyPublisher<UIImage?, Error> {
 
       // Create a URL object from the URLComponents object
-      let url = URL(string: "https://maps.aerisapi.com/\(NetworkData.clientID)_\(NetworkData.clientKey)/\(type)/\(String(zoom))/\(String(latitude))/\(String(longitude))/current.png")
+      let url = URL(string: "https://maps.aerisapi.com/\(Constants.clientID)_\(Constants.clientKey)/\(type)/\(String(zoom))/\(String(latitude))/\(String(longitude))/current.png")
       //let url = URL(string: "https://maps2.aerisapi.com/DAbiMTarY8wNNoKMNfaz8_w0ss3eaeLRRkeVrd2H067P2DV3H7aG4kQLR1gUm7/radar/12/41/23/current.png")
       
       // Create a URLSession object
@@ -71,7 +59,7 @@ class NetworkData: NSObject, ObservableObject, CLLocationManagerDelegate {
    
    static func fetchStormReports(latitude: Double, longitude: Double) -> AnyPublisher<StormReportAnnotation, Error>  {
 
-      guard let url = URL(string: "https://api.aerisapi.com/stormreports/\(latitude),\(longitude)?format=geojson&from=2022/05/01&limit=10&client_id=\(NetworkData.clientID)&client_secret=\(NetworkData.clientKey)") else {
+      guard let url = URL(string: "https://api.aerisapi.com/stormreports/\(latitude),\(longitude)?format=geojson&from=2022/05/01&limit=10&client_id=\(Constants.clientID)&client_secret=\(Constants.clientKey)") else {
           fatalError("Invalid URL")
       }
 
@@ -87,7 +75,6 @@ class NetworkData: NSObject, ObservableObject, CLLocationManagerDelegate {
          .decode(type: StormReportAnnotation.self, decoder: JSONDecoder())
          .eraseToAnyPublisher()
    }
-   
 }
 
 

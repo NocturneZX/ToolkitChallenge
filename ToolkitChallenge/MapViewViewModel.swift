@@ -46,8 +46,7 @@ class MapViewViewModel: ObservableObject {
                     print("Completed fetching storm reports")
                 }
             }, receiveValue: { stormReportAnnotation in
-                //print("Received storm report annotation: \(stormReportAnnotation)")
-                // Do something with the received data
+                // Create point annotation for each storm report for heatmapping
                 if let features = stormReportAnnotation.features {
                     for feature in features {
                         let annotation = MKPointAnnotation()
