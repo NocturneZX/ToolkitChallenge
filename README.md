@@ -6,4 +6,4 @@ I created this application using MapKit for two reasons. One) Since my machine c
 
 Two) I figured that MapKit was the path of least resistance when it came to starting the project, given that the project was going to be native and written in SwiftUI.
 
-![alt text](https://drive.google.com/file/d/1mSB2CTSCmFH7PXz4eOBLIcttyznOfQU9/)
+![alt text](https://github.com/NocturneZX/ToolkitChallenge/blob/master/3069ed4c-c203-43c9-b850-84ce53208f83.jpgraw=true "Heatmap")
