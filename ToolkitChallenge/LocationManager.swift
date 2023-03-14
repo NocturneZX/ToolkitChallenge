@@ -21,7 +21,7 @@ class LocationManager: NSObject, ObservableObject {
     
     func start() {
         locationManager.requestWhenInUseAuthorization()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.startUpdatingLocation()
     }

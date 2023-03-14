@@ -17,11 +17,9 @@ struct MapView: UIViewRepresentable {
     @Binding var location: CLLocation?
     
     var mapTile: UIImage?
-    //var tileRenderer: MKTileOverlayRenderer?
 
     var annotations: [MKPointAnnotation]
     var span: MKCoordinateSpan
-    let heatMap = DTMHeatmap()
 
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView(frame: .zero)
@@ -42,18 +40,16 @@ struct MapView: UIViewRepresentable {
         
         // Heatmap
         // Update heatmap
-        print("Anno: \(annotations)")
-        var data: [AnyHashable: Any?] = [:]
-
+        uiView.removeOverlays(uiView.overlays)
+        
         for annotation in annotations {
             let location = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
             let point = MKMapPoint(location.coordinate)
             let pointVal = NSValue(mkMapPoint: point)
-            data = [pointVal:30]
+            // Based of the map point, it will create a heatmap overlay underneath the point annotation
+            addHeatmapOverlay(to: uiView, data: [pointVal:30] as [AnyHashable : Any])
         }
         
-        uiView.removeOverlays(uiView.overlays)
-        addHeatmapOverlay(to: uiView, data: data as [AnyHashable : Any])
         self.setupTileRenderer(uiView)
     }
 
@@ -89,11 +85,13 @@ struct MapView: UIViewRepresentable {
     
     private func setupTileRenderer(_ uiView: MKMapView) {
       let overlay = MapTileOverlay(image: mapTile ?? UIImage())
-      overlay.canReplaceMapContent = true
+        overlay.canReplaceMapContent = false
         uiView.addOverlay(overlay, level: .aboveRoads)
     }
     
+    // Create the heatmap overlay
     private func addHeatmapOverlay(to mapView: MKMapView, data: [AnyHashable: Any]?) {
+        let heatMap = DTMHeatmap()
         heatMap.setData(data! as [AnyHashable : Any])
         mapView.addOverlay(heatMap)
     }

@@ -8,8 +8,6 @@
 import Foundation
 
 struct Constants {
-
-    static let clientID: String = "4eVqWdIpoVOPbeY2i4TNj"
-    static let clientKey: String = "Amzkgeysxj6cBo4JM9F5buHmRhVuNIjVDoSPbikE"
-    
+    static let clientID: String = "2iFHZ21fO4DHSnWEloia5"
+    static let clientKey: String = "dIewWSPDPc9HNNAAwOEKAy3kCVFoNyAAlmxr6oWq"
 }
