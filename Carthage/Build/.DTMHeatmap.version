@@ -1,0 +1,26 @@
+{
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "1.1",
+  "iOS" : [
+    {
+      "hash" : "38c107a6001e7c8873d89c2e8fdc54709df6b4d56838f2b6a2369f60708be220",
+      "name" : "DTMHeatmap",
+      "container" : "DTMHeatmap.xcframework",
+      "identifier" : "ios-arm64_i386_x86_64-simulator"
+    },
+    {
+      "hash" : "65a056ad36e5c18f16b3ab996723e7b1f5c17c5d791797c02608deccdd520004",
+      "name" : "DTMHeatmap",
+      "container" : "DTMHeatmap.xcframework",
+      "identifier" : "ios-arm64_armv7"
+    }
+  ]
+}
